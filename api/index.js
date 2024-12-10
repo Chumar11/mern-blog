@@ -1,8 +1,7 @@
-import express from 'express'
-const app=express();
+import express from "express";
+import db from "./db/dbconnect.js";
+const app = express();
 
-
-app.listen(3000,()=>{
-    console.log("server is runing on port 3000");
-    
+app.listen(3001, () => {
+  console.log("server is runing on port 3001");
 });
