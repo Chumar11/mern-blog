@@ -16,8 +16,6 @@ export default function SignUp() {
       return seterrorMessage("Please fill out all fields...");
     }
 
-    console.log("majid chor");
-
     try {
       setisLoading(true);
       seterrorMessage(null);
