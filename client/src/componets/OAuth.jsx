@@ -20,13 +20,15 @@ const OAuth = () => {
     Provider.setCustomParameters({ prompt: "select_account" });
     try {
       const resultFromGoogle = await signInWithPopup(auth, Provider);
+      console.log(resultFromGoogle.user.photoURL);
+
       const res = await fetch("/api/google", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           name: resultFromGoogle.user.displayName,
           email: resultFromGoogle.user.email,
-          googlePhoto: resultFromGoogle.user.photoURL,
+          profileimage: resultFromGoogle.user.photoURL,
         }),
       });
       const data = await res.json();

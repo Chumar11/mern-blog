@@ -63,8 +63,9 @@ export const signin = async (req, res, next) => {
 // google login
 
 export const countgoogle = async (req, res, next) => {
-  // console.log("reach there");
-  const { email, name, googlePhoto } = req.body;
+  const { email, name, profileimage } = req.body;
+
+  console.log("reach there", name, email, profileimage);
   try {
     const user = await User.findOne({ email });
     if (user) {
@@ -84,7 +85,7 @@ export const countgoogle = async (req, res, next) => {
         username: name.toLowerCase() + Math.random().toString(9).slice(-4),
         email,
         password: hashPassword,
-        profileimage: googlePhoto,
+        profileimage: profileimage,
       });
 
       await newUser.save();
