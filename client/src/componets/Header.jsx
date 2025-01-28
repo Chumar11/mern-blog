@@ -6,19 +6,23 @@ import {
   DropdownItem,
   TextInput,
 } from "flowbite-react";
+// import { useDispatch } from "react-redux";
+import { changeTheme } from "../redux/theme/themeSlice";
+
 import React, { useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { AiOutlineSearch } from "react-icons/ai";
-import { FaMoon } from "react-icons/fa";
+import { FaMoon, FaSun } from "react-icons/fa";
 import { Navbar } from "flowbite-react";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 export default function Header() {
   const path = useLocation().pathname;
   const { currentUser } = useSelector((state) => state.user);
+  const { theme } = useSelector((state) => state);
   console.log("current user", currentUser);
   console.log("helo");
   const [isImageLoaded, setIsImageLoaded] = useState(false);
-
+  const dispatch = useDispatch();
   useEffect(() => {
     if (currentUser && currentUser.profileimage) {
       const img = new Image();
@@ -26,7 +30,6 @@ export default function Header() {
       img.onload = () => setIsImageLoaded(true);
     }
   }, [currentUser]);
-
 
   return (
     <Navbar className="border-b-2">
@@ -56,8 +59,9 @@ export default function Header() {
         w-12 h-10 hidden sm:inline"
           color="gray"
           pill
+          onClick={() => dispatch(changeTheme())}
         >
-          <FaMoon />
+          {theme.theme === "dark" ? <FaMoon /> : <FaSun />}
         </Button>
 
         {currentUser ? (
