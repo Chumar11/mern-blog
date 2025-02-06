@@ -22,7 +22,9 @@ export default function Dashboard() {
         <DashSIdeBar />
       </div>
       {/* profile Route ......  */}
-      <div className=" ">{tab === "profile" && <DashProfile />}</div>
+      <div className="mx-auto w-full ">
+        {tab === "profile" && <DashProfile />}
+      </div>
     </div>
   );
 }
